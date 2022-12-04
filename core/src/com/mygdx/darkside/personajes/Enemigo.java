@@ -12,8 +12,11 @@ public class Enemigo extends Personaje{
 		this.vida = this.vidaMax;
 		this.ataque = 10;
 		spr.setBounds(x,100,220,150);
-		//x=1050; 
+
 		this.sprite=spr;
 	}
-
+	
+	public float recibeDaño(float vida, float daño) {
+		return vida-daño;
+	}
 }

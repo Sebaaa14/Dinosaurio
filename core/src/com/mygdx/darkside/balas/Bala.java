@@ -6,7 +6,12 @@ import com.mygdx.darkside.personajes.Personaje;
 import com.mygdx.darkside.utilidades.Imagen;
 import com.mygdx.darkside.utilidades.Recursos;
 
-public class Bala {
+import colisiones.Colision;
+
+
+public class Bala implements Colision{
+
+	
 	private float xSpeed;
 	private float ySpeed;
 	private boolean destruido = false;
@@ -24,6 +29,8 @@ public class Bala {
 		if(!sentido) sprBala.rotarImagen();
 		this.direccionBala = sentido;
 	}
+	
+	
 
 	// para cuando se sale de la pantalla, desaparece
 	public void moverBala() {
@@ -50,7 +57,7 @@ public class Bala {
 			}
 		}
 
-		// Bala a la izquierda
+
 
 	}
 
@@ -58,13 +65,13 @@ public class Bala {
 		sprBala.dibujarImagen();
 	}
 
-	public boolean comprobarColision(Personaje pj2) {
+	/*public boolean comprobarColision(Personaje pj2) {
 		if (sprBala.getBoundingRectangle().overlaps(pj2.getSprite().getArea())) { // Se destruyen ambos
 			this.destruido = true;
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	public boolean seDestruyo() {
 		return this.destruido;
@@ -73,5 +80,18 @@ public class Bala {
 	public Sound getSonidoBala() {
 		return sonidoBala;
 	}
+
+
+
+	@Override
+	public boolean comprobarColision(Personaje pj) {
+		if (sprBala.getBoundingRectangle().overlaps(pj.getSprite().getArea())) { // Se destruyen ambos
+			this.destruido = true;
+			return true;
+		}
+		return false;
+	}
+
+
 
 }
